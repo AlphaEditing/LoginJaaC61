@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login y Registro</title>
+    <style>
+        /* Estilos básicos */
+        .formulario {
+            display: none;
+        }
+        .contenedor {
+            position: relative;
+        }
+        .caja_trasera {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: lightgray;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="caja_trasera"></div>
+        <form class="formulario formulario__login">
+            <!-- Formulario de inicio de sesión -->
+            <h2>Iniciar Sesión</h2>
+            <input type="text" placeholder="Usuario">
+            <input type="password" placeholder="Contraseña">
+            <button type="submit">Entrar</button>
+        </form>
+        <form class="formulario formulario__register">
+            <!-- Formulario de registro -->
+            <h2>Registrarse</h2>
+            <input type="text" placeholder="Usuario">
+            <input type="password" placeholder="Contraseña">
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+    <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+    <button id="btn__registrarse">Registrarse</button>
+
+    <script>
+        //Ejecutando funciones
+        document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
+        document.getElementById("btn__registrarse").addEventListener("click", register);
+        window.addEventListener("resize", ajustarVista);
+        document.querySelector('.formulario__login').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            // Aquí puedes agregar la lógica para verificar las credenciales
+
+            // Si las credenciales son correctas, redirige al usuario
+            window.location.href = 'https://alphaediting.github.io/Jaac61/';
+        });
+
+        //Declarando variables
+        var formulario_login = document.querySelector(".formulario__login");
+        var formulario_register = document.querySelector(".formulario__register");
+        var contenedor = document.querySelector(".contenedor");
+        var caja_trasera = document.querySelector(".caja_trasera");
+
+        //FUNCIONES
+        function ajustarVista(){
+            if (window.innerWidth > 850){
+                caja_trasera.style.display = "block";
+            } else {
+                caja_trasera.style.display = "none";
+            }
+        }
+
+        ajustarVista();
+
+        function iniciarSesion(){
+            formulario_login.style.display = "block";
+            formulario_register.style.display = "none";
+        }
+
+        function register(){
+            formulario_register.style.display = "block";
+            formulario_login.style.display = "none";
+        }
+    </script>
+</body>
+</html>
