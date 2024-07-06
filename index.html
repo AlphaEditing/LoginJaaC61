@@ -5,12 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login y Registro</title>
     <style>
-        /* Estilos básicos */
-        .formulario {
-            display: none;
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .contenedor {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 350px;
+            max-width: 100%;
+            transition: all 0.6s ease-in-out;
             position: relative;
+        }
+        .formulario {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+        .formulario h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .formulario input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .formulario button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .formulario button:hover {
+            background: #0056b3;
+        }
+        .contenedor .buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #007bff;
+        }
+        .contenedor .buttons button {
+            padding: 10px 20px;
+            background: #fff;
+            color: #007bff;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .contenedor .buttons button:hover {
+            background: #007bff;
+            color: #fff;
         }
         .caja_trasera {
             display: none;
@@ -19,8 +79,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: lightgray;
-            opacity: 0.5;
+            background: rgba(0, 123, 255, 0.2);
+            z-index: -1;
+        }
+        @media (min-width: 850px) {
+            .contenedor {
+                width: 700px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .formulario {
+                width: 50%;
+            }
+            .caja_trasera {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -28,25 +101,25 @@
     <div class="contenedor">
         <div class="caja_trasera"></div>
         <form class="formulario formulario__login">
-            <!-- Formulario de inicio de sesión -->
             <h2>Iniciar Sesión</h2>
-            <input type="text" placeholder="Usuario">
-            <input type="password" placeholder="Contraseña">
+            <input type="text" placeholder="Usuario" required>
+            <input type="password" placeholder="Contraseña" required>
             <button type="submit">Entrar</button>
         </form>
         <form class="formulario formulario__register">
-            <!-- Formulario de registro -->
             <h2>Registrarse</h2>
-            <input type="text" placeholder="Usuario">
-            <input type="password" placeholder="Contraseña">
+            <input type="text" placeholder="Usuario" required>
+            <input type="password" placeholder="Contraseña" required>
             <button type="submit">Registrar</button>
         </form>
+        <div class="buttons">
+            <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+            <button id="btn__registrarse">Registrarse</button>
+        </div>
     </div>
-    <button id="btn__iniciar-sesion">Iniciar Sesión</button>
-    <button id="btn__registrarse">Registrarse</button>
 
     <script>
-        //Ejecutando funciones
+        // Ejecutando funciones
         document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
         document.getElementById("btn__registrarse").addEventListener("click", register);
         window.addEventListener("resize", ajustarVista);
@@ -59,15 +132,15 @@
             window.location.href = 'https://alphaediting.github.io/Jaac61/';
         });
 
-        //Declarando variables
+        // Declarando variables
         var formulario_login = document.querySelector(".formulario__login");
         var formulario_register = document.querySelector(".formulario__register");
         var contenedor = document.querySelector(".contenedor");
         var caja_trasera = document.querySelector(".caja_trasera");
 
-        //FUNCIONES
-        function ajustarVista(){
-            if (window.innerWidth > 850){
+        // FUNCIONES
+        function ajustarVista() {
+            if (window.innerWidth > 850) {
                 caja_trasera.style.display = "block";
             } else {
                 caja_trasera.style.display = "none";
@@ -76,12 +149,12 @@
 
         ajustarVista();
 
-        function iniciarSesion(){
+        function iniciarSesion() {
             formulario_login.style.display = "block";
             formulario_register.style.display = "none";
         }
 
-        function register(){
+        function register() {
             formulario_register.style.display = "block";
             formulario_login.style.display = "none";
         }
